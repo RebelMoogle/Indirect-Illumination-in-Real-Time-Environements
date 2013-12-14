@@ -1,0 +1,317 @@
+- TODO
+
+-- Alpha tasks
+
+0 create test scene for dynamic objects
+	- floor, wall and moving cube
+
+1 Random Function in shader
+	- use same random sequence for the whole photon path
+		- save random sequence in photon
+		- use seeds + boucne index to get random nr in sequence?
+		- seeed in bouncemap fromn texCoords/screenCoords
+		- send only seed with photon
+	- constant when movement!
+	- implement improved noise function
+		- twister RNG, see Game Coding Complete src
+		- uniform distribution random
+		- or: own random texture (filltexture)
+
+1 Splat photons
+	- control min max radius, min max distance and photon count with each scene
+	- improve splatting code
+		- render simple fillrate texture (low res)
+			- control radius with this
+		- check if photons could be culled with depth buffer (doesn't seem to be working)
+
+2 Lights
+	- calculate quota anew only when camera moves
+	- larger GBuffer - higher resolution
+	- shadows
+		- render extra depth map at highest resolution from light
+			- user other function in computeShadows
+	-optimization
+		- if turned away from viewer: render (only when close enough?)
+		- if turned towards viewer: render if ca. inside farplane of light
+
+
+--- everything below this line after writing the thesis! (Beta tasks)
+
+-- fun stuff
+- Bloom Shader
+- textures for detail
+- improved dynamic tone mapping
+
+3  get rid of old bouncemaps
+
+4  write random material function for city generator
+
+2 optix photons: 
+	- check if photons are dead / not written! (no power, no position, etc)
+		- in optix
+		- in splatphotons GS shader
+	- progressive splatting
+	
+2 Photon Tracing
+	- check and fix specular
+	- check and fix transmissive
+		- handle transparent materials
+
+2 Bouncemap
+	- invCos_fov (frustum projection correction factor) - is missing this causing the problems?
+	- handle transparent materials
+
+3 GBuffer
+	- set world matrix of each object
+	- update camera constants only on change! (not per frame)
+	- handle transparent materials
+
+3 CleanUp 
+	- write exception and error handling
+	 - media loading
+	 - shader load and compile
+	- put code into classes, make App slim
+	- RELEASE every used interface (pointer)
+		- maybe use shared pointers whereever needed?
+	- reduce Warnings
+
+# NTH #
+	- load obj meshes with mtl files.
+		- from 3DsMax exporter
+		- write importer loading files, interpreting obj and mtl
+		- write model class
+			- submeshes
+				- vertex buffer
+				- index Buffer
+				- materials
+				- textures
+			- render method (set textures and shader resources)
+				- handle custom shader registers for textures and constant buffers
+		- simple test rendering project.
+
+Licence notice ( Creative Commons?)
+
+#### Questions ###
+
+ - Colors for city?
+ - Textures for blocks?
+ - Decrease of photon power when bounced?
+	-correct?
+
+
+-----------------------------
+	
+	- Photon Splatting
+		- incoming or outgoing data?
+			- incoming direction for specular
+			- eingehende farbe / licht mit reflektionsgrad / meterial an der stelle verbinden
+		- why ellipsoids? why not simple quads aligned with surface?
+			- leichte krümmungen
+			- beeinflussungen der umliegenden flächen
+	
+	- weird power behavior
+		- 1. problem lies with this: 	float cosAngleLookIn = -dot(incomingDir, lightVector); something is wrong here.
+		- 2. problem: specular needs to be calculated correctly! (fresnel, cos, projection correction, specularmap, etc)
+			- !!! for now: return after diffuse term !!!
+
+	- Motivation; Ziel; Fokus
+		- Essentielle Bestandteile
+		- was muss wie gut funktionieren?
+		- Erfolgskriterien
+			- draußen: othogonal
+			- dynamisch: Kamerabewegung
+			- vergleich klassisch für draußen. (sonne: spotlight)
+
+# answered #
+- transmittance map?
+	- create? analytical? material property?
+	- difference to alpha: Für verschiedene Farbkanäle Durchlässigkeit
+- GBuffer diffuse, specular and transmissive constants. 
+	- why? do i need them for scaling?: probably.
+
+- Photons: 
+	photons per color channel or color per photon?
+	- photons per channel probably more expensive, three times the photons.
+	- see ISPM code: renders onto sphere, transformed and made ellipsoid?
+
+### Bugs ###
+
+
+### Ideas ###
+
+- 2 Buffers, render photons into buffers, swap and draw when full or when time is up?
+	- 1 Buffer drawing, 1 computing
+	- does rendering lock the graphics card?
+	- compute shader
+	- how is this with optix? two contexts: one splats, the other traces with optix? possible?
+- progessive berechnung
+	- keine komplette Bouncemap (dafür höhere auflösung)
+	- random neue photonen wenn threads frei werden.
+- Mask for lights
+	- Abschwächung von photon über löschen nach maske (blending im shader)
+- Spiegel: extra kamera aus anderer Richtung. (vgl portal)
+
+- Draußenszene: flackern
+	- random seed texture für gesamte welt.
+	- konstanter seed für jede position
+	- gleiche photonenpfade für jede position/richtung
+		- kein flackern
+
+	- alternativ: caching der bereits berechneten daten.
+
+DONE:
+-------------
+1 dynamic geometry - monday / tuesday
+	- optix setup
+	- spinning box?
+	- transformation need to be set for optix AND direct3D
+
+0 Extend Test Scene - monday
+	- transition between indoor and outdoor scene
+		- increase size (size diff is too big)
+	- streets / gaps between buildings
+	- extensions / additions to buildings
+
+ Build another Test Scene
+	- build box
+	- instance box around scene (scaling)
+	- automatic random scene generator (outdoor city-like scene)
+
+- Random Function in shader
+	- simple pseudo-random implemented. 
+		- need better random function
+
+- lIGHTS
+	-sunlight
+		- compute from depthmap and GBuffer
+		- compile shaders
+		- set shaders
+		- setup shader resources
+		- setup constant buffers
+		- render
+	- add before splatting as base
+		- render in between BounceBuffer and SO query
+		- render correct spotlight (is pointlight atm)
+			- light angle ? falloff?
+			-> caculate texcoord of lightGBuffer:
+				- wsposition * worldViewProj of light camera -> viewspace
+				- get txcoord from viewspace coords
+				- if distance(light-wsposition, lightposition) < distance(wsposition, lightpos)
+					-> fail-> no light!
+				- early check: distance wsposition to lightposition > lightvector (lookat)
+					-> fail
+					- additional early check with angle: analytically check against cone!
+					- simple dot product- implmented: dot(lightDirection, lightToWSPosition);
+					- might not be faster!?
+				- spotlight falloff: set wsposition to lightposition
+		- render shadow mapping (with lightClipRT?)
+		- distribute photons between muiltiple lights (LOD)
+		- distribution only between visible lights
+			- importance ( transition inside / outside )
+			- distance (LOD)!!!
+		- sunlight quota; 
+			- spotlight: (1 - sunlightquota) / nr of spotlights
+			- calculated from distance and visibility of spotlights
+			- orthogonal camera
+		- moving sun with camera - NO: STATIONARY
+			- move with viewer camera
+			- create frustum around viewer
+			- get rotation from camera direction
+			- flickering
+				- use constant texCoord for random map for whole world
+				- or implement better random function and use position as
+				- or sunlight stays in one place and renders whole map?
+				- or transition between chunks (two suns?)
+	- multiple lights per scene
+	- two seperate constant buffers for camera
+		- main scene
+		- light camera (reset for every light)
+		- set viewer camera onec per frame
+	- per light:
+		- set camera
+		- render gbuffer
+		- render forward ( main camera stays same)
+	- distribute per light
+		- number of photons per light
+
+- optimize
+	- set GBuffer only when needed. (and only once per frame?)
+	- set constant buffers only when needed. (and only once per frame?)
+
+- photons 
+	- control photon power in scene
+	- photon count
+- splatting
+	- banding
+		- use cube: extruded at normal
+			- with quad: worldposition is closer to photon (inside radius)
+				- quad is not large enough to include the complete radius in worldspace (sphere)
+		- use ellipsoid
+	- radius dependent on travel distance and on number of photons in scene!
+	- clear result buffer
+	- cull photons not visible!
+		- should work with depth buffer
+		- extra check throught position / depth map
+
+
+- Scene Class
+	- models
+	- photon count
+	- cameras
+	- lights
+
+
+ - photon tracing
+ 	- setup geometry in optix
+		- static and dynamic group
+		- create acc. structure
+	- trace photons
+		- shoot rays
+		- hit function
+		- change power
+		- roulette
+	- write optix code ( hit function)
+	- don't draw BounceBuffer photons
+ 
+
+ - integrate Optix
+	- load libs and dll.
+	- init optix object
+	- setup buffers to send data to optix
+		- size for photons
+		- format for saving photon data
+	- test optix with test data
+
+
+ - BounceMap
+	- set GBuffer Data, Transmittance map
+	- random()
+	- scattering function
+	- clear RenderTargets
+	- set Light info
+	- display Bouncemap on screen
+	- create photon buffer from results
+	- Bouncemap calculation in shader
+	- Fresnel()
+
+- splat photons
+	- draw photon buffer.
+	- splat in scene.
+		- create splats in geometry shader
+		- render onto splats (photon information)
+ 
+ - fix rendertarget views of GBuffer per light
+ - GBuffer
+	- !!!!write own GBuffer!!!!! (should be pretty easy, since I don't need any special thingies.)
+	- specular
+	- albedo
+	- transmittance
+	- fix black GBuffer
+	- set Depthbuffer myself (not through Depth2D)
+	- fix GBUFFER is black, prblems with depth buffer)
+			- load a complete EFFECT file! (no more silly stuff. narg)
+			- set Debug shader for PIX.
+		- setup my own depth state, blend state and rasterizer states
+		- render target at slot 4 set on input??
+			- textureToScreen is the problem, probably net to release the input shader resource views.
+				- GBuffer behaves weirdly on camera movement

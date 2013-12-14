@@ -1,0 +1,269 @@
+	.version 1.4
+	.target sm_10, map_f64_to_f32
+	// compiled with C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v4.0\bin/../open64/lib//be.exe
+	// nvopencc 4.0 built on 2011-05-13
+
+	//-----------------------------------------------------------
+	// Compiling C:/Users/REBELM~1/AppData/Local/Temp/tmpxft_00001bc4_00000000-8_SphereGeometry.cpp3.i (C:/Users/REBELM~1/AppData/Local/Temp/ccBI#.a05456)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_10, Endian:little, Pointer Size:32
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"C:/Users/REBELM~1/AppData/Local/Temp/tmpxft_00001bc4_00000000-7_SphereGeometry.cudafe2.gpu"
+	.file	2	"e:\nvidia\optix sdk 2.1.1\include\internal/optix_datatypes.h"
+	.file	3	"e:\nvidia\optix sdk 2.1.1\include\optixu/optixu_aabb_namespace.h"
+	.file	4	"e:\nvidia\optix sdk 2.1.1\include\internal\optix_defines.h"
+	.file	5	"c:\program files (x86)\microsoft visual studio 10.0\vc\include\codeanalysis\sourceannotations.h"
+	.file	6	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\crt/device_runtime.h"
+	.file	7	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\host_defines.h"
+	.file	8	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\builtin_types.h"
+	.file	9	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\device_types.h"
+	.file	10	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\driver_types.h"
+	.file	11	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\surface_types.h"
+	.file	12	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\texture_types.h"
+	.file	13	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\vector_types.h"
+	.file	14	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\builtin_types.h"
+	.file	15	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\host_defines.h"
+	.file	16	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\device_launch_parameters.h"
+	.file	17	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\crt\storage_class.h"
+	.file	18	"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\time.h"
+	.file	19	"e:\nvidia\optix sdk 2.1.1\include\optix_device.h"
+	.file	20	"E:/Programming/Diplom-RebelCraft/trunk/RebelCraft/CUDA/SphereGeometry.cu"
+	.file	21	"e:\nvidia\optix sdk 2.1.1\include\internal/optix_internal.h"
+	.file	22	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\common_functions.h"
+	.file	23	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\math_functions.h"
+	.file	24	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\math_constants.h"
+	.file	25	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\device_functions.h"
+	.file	26	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_11_atomic_functions.h"
+	.file	27	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_12_atomic_functions.h"
+	.file	28	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_13_double_functions.h"
+	.file	29	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_20_atomic_functions.h"
+	.file	30	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_20_intrinsics.h"
+	.file	31	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\surface_functions.h"
+	.file	32	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\texture_fetch_functions.h"
+	.file	33	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\math_functions_dbl_ptx1.h"
+
+	.global .align 16 .b8 sphere[16];
+	.global .align 16 .b8 ray[36];
+	.global .align 16 .b8 shading_normal[12];
+	.global .align 16 .b8 geometric_normal[12];
+
+	.entry _Z9intersecti (
+		.param .s32 __cudaparm__Z9intersecti_primIdx)
+	{
+	.reg .u32 %r<18>;
+	.reg .f32 %f<52>;
+	.reg .pred %p<7>;
+	.loc	20	72	0
+$LDWbegin__Z9intersecti:
+	ld.global.v4.f32 	{%f1,%f2,%f3,_}, [ray+0];
+	ld.global.v4.f32 	{%f4,%f5,%f6,%f7}, [sphere+0];
+	.loc	20	74	0
+	sub.f32 	%f8, %f2, %f5;
+	sub.f32 	%f9, %f1, %f4;
+	sub.f32 	%f10, %f3, %f6;
+	mul.f32 	%f11, %f8, %f8;
+	ld.global.v2.f32 	{%f12,%f13}, [ray+16];
+	mul.f32 	%f14, %f8, %f12;
+	mad.f32 	%f15, %f9, %f9, %f11;
+	ld.global.f32 	%f16, [ray+12];
+	mad.f32 	%f17, %f9, %f16, %f14;
+	mad.f32 	%f18, %f10, %f10, %f15;
+	mad.f32 	%f19, %f10, %f13, %f17;
+	mul.f32 	%f20, %f7, %f7;
+	sub.f32 	%f21, %f18, %f20;
+	mul.f32 	%f22, %f19, %f19;
+	sub.f32 	%f23, %f22, %f21;
+	mov.f32 	%f24, 0f00000000;    	// 0
+	setp.gt.f32 	%p1, %f23, %f24;
+	@!%p1 bra 	$Lt_0_7426;
+	.loc	20	55	0
+	mov.s32 	%r1, 1;
+	.loc	21	93	0
+	sqrt.approx.f32 	%f25, %f23;
+	add.f32 	%f26, %f19, %f25;
+	neg.f32 	%f27, %f26;
+	mov.f32 	%f28, %f27;
+	call (%r2), _rt_potential_intersection, (%f28);
+	mov.s32 	%r3, %r2;
+	.loc	20	56	0
+	mov.u32 	%r4, 0;
+	setp.eq.s32 	%p2, %r3, %r4;
+	@%p2 bra 	$Lt_0_8962;
+	.loc	20	57	0
+	rcp.approx.f32 	%f29, %f7;
+	mul.f32 	%f30, %f26, %f16;
+	sub.f32 	%f31, %f9, %f30;
+	mul.f32 	%f32, %f31, %f29;
+	mul.f32 	%f33, %f26, %f12;
+	sub.f32 	%f34, %f8, %f33;
+	mul.f32 	%f35, %f34, %f29;
+	st.global.v2.f32 	[geometric_normal+0], {%f32,%f35};
+	mul.f32 	%f36, %f26, %f13;
+	sub.f32 	%f37, %f10, %f36;
+	mul.f32 	%f38, %f37, %f29;
+	st.global.f32 	[geometric_normal+8], %f38;
+	st.global.v2.f32 	[shading_normal+0], {%f32,%f35};
+	st.global.f32 	[shading_normal+8], %f38;
+	.loc	21	103	0
+	mov.u32 	%r5, 0;
+	mov.u32 	%r6, %r5;
+	call (%r7), _rt_report_intersection, (%r6);
+	mov.s32 	%r8, %r7;
+	.loc	20	58	0
+	mov.u32 	%r9, 0;
+	setp.eq.s32 	%p3, %r8, %r9;
+	@%p3 bra 	$Lt_0_9474;
+	.loc	20	59	0
+	mov.s32 	%r1, 0;
+$Lt_0_9474:
+$Lt_0_8962:
+	mov.u32 	%r10, 0;
+	setp.eq.s32 	%p4, %r1, %r10;
+	@%p4 bra 	$Lt_0_9986;
+	.loc	21	93	0
+	sub.f32 	%f39, %f25, %f19;
+	mov.f32 	%f40, %f39;
+	call (%r11), _rt_potential_intersection, (%f40);
+	mov.s32 	%r12, %r11;
+	.loc	20	63	0
+	mov.u32 	%r13, 0;
+	setp.eq.s32 	%p5, %r12, %r13;
+	@%p5 bra 	$Lt_0_10498;
+	.loc	20	64	0
+	rcp.approx.f32 	%f41, %f7;
+	mul.f32 	%f42, %f39, %f16;
+	add.f32 	%f43, %f9, %f42;
+	mul.f32 	%f44, %f43, %f41;
+	mul.f32 	%f45, %f39, %f12;
+	add.f32 	%f46, %f8, %f45;
+	mul.f32 	%f47, %f46, %f41;
+	st.global.v2.f32 	[geometric_normal+0], {%f44,%f47};
+	mul.f32 	%f48, %f39, %f13;
+	add.f32 	%f49, %f10, %f48;
+	mul.f32 	%f50, %f49, %f41;
+	st.global.f32 	[geometric_normal+8], %f50;
+	st.global.v2.f32 	[shading_normal+0], {%f44,%f47};
+	st.global.f32 	[shading_normal+8], %f50;
+	.loc	21	103	0
+	mov.u32 	%r14, 0;
+	mov.u32 	%r15, %r14;
+	call (%r16), _rt_report_intersection, (%r15);
+$Lt_0_10498:
+$Lt_0_9986:
+$Lt_0_7426:
+	.loc	20	75	0
+	exit;
+$LDWend__Z9intersecti:
+	} // _Z9intersecti
+
+	.entry _Z6boundsiPf (
+		.param .s32 __cudaparm__Z6boundsiPf___T270,
+		.param .u32 __cudaparm__Z6boundsiPf_result)
+	{
+	.reg .u32 %r<4>;
+	.reg .f32 %f<21>;
+	.reg .pred %p<4>;
+	.loc	20	148	0
+$LDWbegin__Z6boundsiPf:
+	.loc	20	155	0
+	ld.global.f32 	%f1, [sphere+12];
+	mov.f32 	%f2, 0f00000000;     	// 0
+	setp.gt.f32 	%p1, %f1, %f2;
+	@!%p1 bra 	$Lt_1_1282;
+	abs.f32 	%f3, %f1;
+	mov.f32 	%f4, 0f7f800000;     	// 1.#INF
+	setp.eq.f32 	%p2, %f3, %f4;
+	@%p2 bra 	$Lt_1_514;
+	ld.global.v4.f32 	{%f5,%f6,%f7,_}, [sphere+0];
+	.loc	20	156	0
+	ld.param.u32 	%r1, [__cudaparm__Z6boundsiPf_result];
+	sub.f32 	%f8, %f5, %f1;
+	st.global.f32 	[%r1+0], %f8;
+	sub.f32 	%f9, %f6, %f1;
+	st.global.f32 	[%r1+4], %f9;
+	sub.f32 	%f10, %f7, %f1;
+	st.global.f32 	[%r1+8], %f10;
+	.loc	20	157	0
+	add.f32 	%f11, %f5, %f1;
+	st.global.f32 	[%r1+12], %f11;
+	add.f32 	%f12, %f6, %f1;
+	st.global.f32 	[%r1+16], %f12;
+	add.f32 	%f13, %f7, %f1;
+	st.global.f32 	[%r1+20], %f13;
+	.loc	20	155	0
+	bra.uni 	$Lt_1_1026;
+$Lt_1_1282:
+$Lt_1_514:
+	.loc	20	159	0
+	ld.param.u32 	%r2, [__cudaparm__Z6boundsiPf_result];
+	mov.f32 	%f14, 0f7cf0bdc2;    	// 1e+037
+	st.global.f32 	[%r2+0], %f14;
+	mov.f32 	%f15, 0f7cf0bdc2;    	// 1e+037
+	st.global.f32 	[%r2+4], %f15;
+	mov.f32 	%f16, 0f7cf0bdc2;    	// 1e+037
+	st.global.f32 	[%r2+8], %f16;
+	mov.f32 	%f17, 0ffcf0bdc2;    	// -1e+037
+	st.global.f32 	[%r2+12], %f17;
+	mov.f32 	%f18, 0ffcf0bdc2;    	// -1e+037
+	st.global.f32 	[%r2+16], %f18;
+	mov.f32 	%f19, 0ffcf0bdc2;    	// -1e+037
+	st.global.f32 	[%r2+20], %f19;
+$Lt_1_1026:
+	.loc	20	161	0
+	exit;
+$LDWend__Z6boundsiPf:
+	} // _Z6boundsiPf
+	.global .align 4 .b8 texcoord[12];
+	.global .u32 _ZN21rti_internal_register20reg_bitness_detectorE;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail0E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail1E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail2E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail3E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail4E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail5E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail6E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail7E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail8E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail9E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail0E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail1E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail2E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail3E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail4E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail5E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail6E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail7E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail8E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail9E;
+	.global .u32 _ZN21rti_internal_register14reg_rayIndex_xE;
+	.global .u32 _ZN21rti_internal_register14reg_rayIndex_yE;
+	.global .u32 _ZN21rti_internal_register14reg_rayIndex_zE;
+	.global .align 4 .b8 _ZN21rti_internal_typeinfo6sphereE[8] = {82,97,121,0,16,0,0,0};
+	.global .align 4 .b8 _ZN21rti_internal_typeinfo3rayE[8] = {82,97,121,0,36,0,0,0};
+	.global .align 4 .b8 _ZN21rti_internal_typeinfo8texcoordE[8] = {82,97,121,0,12,0,0,0};
+	.global .align 4 .b8 _ZN21rti_internal_typeinfo14shading_normalE[8] = {82,97,121,0,12,0,0,0};
+	.global .align 4 .b8 _ZN21rti_internal_typeinfo16geometric_normalE[8] = {82,97,121,0,12,0,0,0};
+	.global .align 1 .b8 _ZN21rti_internal_typename6sphereE[7] = {0x66,0x6c,0x6f,0x61,0x74,0x34,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_typename3rayE[11] = {0x6f,0x70,0x74,0x69,0x78,0x3a,0x3a,0x52,0x61,0x79,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_typename8texcoordE[7] = {0x66,0x6c,0x6f,0x61,0x74,0x33,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_typename14shading_normalE[7] = {0x66,0x6c,0x6f,0x61,0x74,0x33,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_typename16geometric_normalE[7] = {0x66,0x6c,0x6f,0x61,0x74,0x33,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_semantic6sphereE[1] = {0x0};
+	.global .align 1 .b8 _ZN21rti_internal_semantic3rayE[13] = {0x72,0x74,0x43,0x75,0x72,0x72,0x65,0x6e,0x74,0x52,0x61,0x79,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_semantic8texcoordE[19] = {0x61,0x74,0x74,0x72,0x69,0x62,0x75,0x74,0x65,0x20,0x74,0x65,0x78,0x63,0x6f,0x6f,0x72,0x64,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_semantic14shading_normalE[25] = {0x61,0x74,0x74,0x72,0x69,0x62,0x75,0x74,0x65,0x20,0x73,0x68,0x61,0x64,0x69,0x6e,0x67,0x5f,0x6e,0x6f,0x72,0x6d,0x61,0x6c,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_semantic16geometric_normalE[27] = {0x61,0x74,0x74,0x72,0x69,0x62,0x75,0x74,0x65,0x20,0x67,0x65,0x6f,0x6d,0x65,0x74,0x72,0x69,0x63,0x5f,0x6e,0x6f,0x72,0x6d,0x61,0x6c,0x0};
+	.global .align 1 .b8 _ZN23rti_internal_annotation6sphereE[1] = {0x0};
+	.global .align 1 .b8 _ZN23rti_internal_annotation3rayE[1] = {0x0};
+	.global .align 1 .b8 _ZN23rti_internal_annotation8texcoordE[1] = {0x0};
+	.global .align 1 .b8 _ZN23rti_internal_annotation14shading_normalE[1] = {0x0};
+	.global .align 1 .b8 _ZN23rti_internal_annotation16geometric_normalE[1] = {0x0};
+

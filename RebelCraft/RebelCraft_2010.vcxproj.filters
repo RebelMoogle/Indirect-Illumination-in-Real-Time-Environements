@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns:atg="http://atg.xbox.com" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{8e114980-c1a3-4ada-ad7c-83caadf5daeb}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="DXUT">
+      <UniqueIdentifier>{a43c5c25-0e86-4a20-b64a-883785ff74fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{e6295373-c19d-44b6-a2e8-d7999693a2ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Geometry">
+      <UniqueIdentifier>{aa2f33db-7de3-48b8-98f4-d0d7b19e4dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{e929d9e4-2552-497a-a628-6ee984ee7a62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{0150317f-e81f-460e-a55c-43f2b7de6e6f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DXUT\Optional\directx.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <ClInclude Include="DXUT\Core\DXUT.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Core\DXUTDevice11.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Core\DXUTDevice9.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Core\DXUTmisc.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClCompile Include="DXUT\Core\DXUT.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Core\DXUTDevice11.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Core\DXUTDevice9.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Core\DXUTmisc.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClInclude Include="DXUT\Optional\DXUTcamera.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTgui.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTres.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTsettingsdlg.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\SDKmesh.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\SDKmisc.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClCompile Include="DXUT\Optional\DXUTcamera.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTgui.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTres.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTsettingsdlg.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\SDKmesh.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\SDKmisc.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <None Include="Shaders\TextureToScreen.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="TODO.txt" />
+    <None Include="Shaders\CraftMyGBuffer.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\ShaderConstants.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\BounceMap.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\SplatPhotons.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\RenderVertex.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\DiffuseMaterial.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\OptixDebugRender.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\OmniMaterial.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\DeferredShade.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\ToneMapping.hlsl">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RebelCraft.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="ColorUtil.cpp" />
+    <ClCompile Include="StaticCamera.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="PhotonMapping.cpp" />
+    <ClCompile Include="OptixAPI.cpp" />
+    <ClCompile Include="RebelGeometry.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="RebelGeometryInstance.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="RebelMaterial.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="ParallelogramGeometry.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentLoader.cpp" />
+    <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="Util.cpp" />
+    <ClCompile Include="BaseSceneBuilder.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CornellSceneBuilder.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="DiffuseMaterial.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="OptixViewerCamera.cpp" />
+    <ClCompile Include="OmniMaterial.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereGeometry.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="SunLight.cpp" />
+    <ClCompile Include="BoxGeometry.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCitySceneBuilder.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicTest.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Profiler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="ColorUtil.h" />
+    <ClInclude Include="StaticCamera.h" />
+    <ClInclude Include="ShaderDefines.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="ShaderStructures.h" />
+    <ClInclude Include="PhotonMapping.h" />
+    <ClInclude Include="OptixAPI.h" />
+    <ClInclude Include="OptixTypes.h" />
+    <ClInclude Include="RebelGeometry.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="RebelGeometryInstance.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="RebelMaterial.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="ParallelogramGeometry.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="ID3DResource.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="IOptixResource.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentLoader.h" />
+    <ClInclude Include="Debug.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="Util.h" />
+    <ClInclude Include="BaseSceneBuilder.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CornellSceneBuilder.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="DiffuseMaterial.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="OptixViewerCamera.h" />
+    <ClInclude Include="ConstantBuffer.h" />
+    <ClInclude Include="OmniMaterial.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h" />
+    <ClInclude Include="SphereGeometry.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="SunLight.h" />
+    <ClInclude Include="BoxGeometry.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCitySceneBuilder.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicTest.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Profiler.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CLInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </CLInclude>
+    <ResourceCompile Include="RebelCraft.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="CUDA\ParallelogramGeometry.cu">
+      <Filter>Geometry</Filter>
+    </CudaCompile>
+    <CudaCompile Include="CUDA\OptixViewerCamera.cu" />
+    <CudaCompile Include="CUDA\DiffuseMaterial.cu">
+      <Filter>Material</Filter>
+    </CudaCompile>
+    <CudaCompile Include="CUDA\OmniMaterial.cu">
+      <Filter>Material</Filter>
+    </CudaCompile>
+    <CudaCompile Include="CUDA\PhotonEmitter.cu" />
+    <CudaCompile Include="CUDA\SphereGeometry.cu">
+      <Filter>Geometry</Filter>
+    </CudaCompile>
+    <CudaCompile Include="CUDA\BoxGeometry.cu">
+      <Filter>Geometry</Filter>
+    </CudaCompile>
+  </ItemGroup>
+</Project>

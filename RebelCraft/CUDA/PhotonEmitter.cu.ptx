@@ -1,0 +1,189 @@
+	.version 1.4
+	.target sm_10, map_f64_to_f32
+	// compiled with C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v4.0\bin/../open64/lib//be.exe
+	// nvopencc 4.0 built on 2011-05-13
+
+	.func _ZN5optix16rt_undefined_useEi (.reg .u32 %ra1)
+
+	//-----------------------------------------------------------
+	// Compiling C:/Users/REBELM~1/AppData/Local/Temp/tmpxft_00001a24_00000000-8_PhotonEmitter.cpp3.i (C:/Users/REBELM~1/AppData/Local/Temp/ccBI#.a05832)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_10, Endian:little, Pointer Size:32
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"C:/Users/REBELM~1/AppData/Local/Temp/tmpxft_00001a24_00000000-7_PhotonEmitter.cudafe2.gpu"
+	.file	2	"e:\nvidia\optix sdk 2.1.1\include\optix_device.h"
+	.file	3	"e:\programming\diplom-rebelcraft\trunk\rebelcraft\cuda\..\OptixTypes.h"
+	.file	4	"e:\nvidia\optix sdk 2.1.1\include\internal/optix_datatypes.h"
+	.file	5	"e:\nvidia\optix sdk 2.1.1\include\internal\optix_defines.h"
+	.file	6	"c:\program files (x86)\microsoft visual studio 10.0\vc\include\codeanalysis\sourceannotations.h"
+	.file	7	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\crt/device_runtime.h"
+	.file	8	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\host_defines.h"
+	.file	9	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\builtin_types.h"
+	.file	10	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\device_types.h"
+	.file	11	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\driver_types.h"
+	.file	12	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\surface_types.h"
+	.file	13	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\texture_types.h"
+	.file	14	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\vector_types.h"
+	.file	15	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\builtin_types.h"
+	.file	16	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\host_defines.h"
+	.file	17	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\device_launch_parameters.h"
+	.file	18	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\crt\storage_class.h"
+	.file	19	"C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\time.h"
+	.file	20	"e:\nvidia\optix sdk 2.1.1\include\optixu/optixu_math_namespace.h"
+	.file	21	"E:/NVIDIA/OptiX SDK 2.1.1/include\optix_sizet.h"
+	.file	22	"E:/Programming/Diplom-RebelCraft/trunk/RebelCraft/CUDA/PhotonEmitter.cu"
+	.file	23	"e:\nvidia\optix sdk 2.1.1\include\internal/optix_internal.h"
+	.file	24	"C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v4.0/include\common_functions.h"
+	.file	25	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\math_functions.h"
+	.file	26	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\math_constants.h"
+	.file	27	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\device_functions.h"
+	.file	28	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_11_atomic_functions.h"
+	.file	29	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_12_atomic_functions.h"
+	.file	30	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_13_double_functions.h"
+	.file	31	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_20_atomic_functions.h"
+	.file	32	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\sm_20_intrinsics.h"
+	.file	33	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\surface_functions.h"
+	.file	34	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\texture_fetch_functions.h"
+	.file	35	"c:\program files\nvidia gpu computing toolkit\cuda\v4.0\include\math_functions_dbl_ptx1.h"
+
+	.global .f32 scene_epsilon;
+	.global .align 4 .b8 top_object[4];
+	.global .align 1 .b8 photonInitialBuffer[1];
+	.global .u32 launch_index;
+
+	.entry _Z14photon_emitterv
+	{
+	.reg .u32 %ra1;
+	.reg .u32 %r<30>;
+	.reg .f32 %f<25>;
+	.local .align 8 .b8 __cuda___cuda_local_var_269122_12_non_const_prd_160[40];
+	.loc	22	20	0
+$LDWbegin__Z14photon_emitterv:
+	.loc	23	48	0
+	mov.u32 	%r1, photonInitialBuffer;
+	mov.u32 	%r2, %r1;
+	mov.u32 	%r3, 1;
+	mov.u32 	%r4, %r3;
+	mov.u32 	%r5, 80;
+	mov.u32 	%r6, %r5;
+	ld.global.u32 	%r7, [launch_index];
+	mov.u32 	%r8, %r7;
+	mov.u32 	%r9, 0;
+	mov.u32 	%r10, %r9;
+	mov.u32 	%r11, 0;
+	mov.u32 	%r12, %r11;
+	mov.u32 	%r13, 0;
+	mov.u32 	%r14, %r13;
+	call (%r15), _rt_buffer_get, (%r2, %r4, %r6, %r8, %r10, %r12, %r14);
+	mov.s32 	%r16, %r15;
+	.loc	23	56	0
+	mov.s32 	%ra1, %r16;
+	call.uni _ZN5optix16rt_undefined_useEi, (%ra1);
+	ld.global.v4.f32 	{%f1,%f2,%f3,_}, [%r16+0];
+	ld.global.v4.f32 	{%f4,%f5,%f6,_}, [%r16+16];
+	ld.global.v4.f32 	{%f7,%f8,%f9,_}, [%r16+32];
+	ld.global.v4.f32 	{%f10,%f11,%f12,%f13}, [%r16+48];
+	.loc	22	43	0
+	st.local.f32 	[__cuda___cuda_local_var_269122_12_non_const_prd_160+0], %f7;
+	st.local.f32 	[__cuda___cuda_local_var_269122_12_non_const_prd_160+4], %f8;
+	st.local.f32 	[__cuda___cuda_local_var_269122_12_non_const_prd_160+8], %f9;
+	.loc	22	44	0
+	cvt.rzi.u32.f32 	%r17, %f4;
+	st.local.u32 	[__cuda___cuda_local_var_269122_12_non_const_prd_160+16], %r17;
+	cvt.rzi.u32.f32 	%r18, %f5;
+	st.local.u32 	[__cuda___cuda_local_var_269122_12_non_const_prd_160+20], %r18;
+	.loc	22	45	0
+	mov.u32 	%r19, 0;
+	st.local.u32 	[__cuda___cuda_local_var_269122_12_non_const_prd_160+24], %r19;
+	.loc	22	46	0
+	mov.u32 	%r20, 0;
+	st.local.u32 	[__cuda___cuda_local_var_269122_12_non_const_prd_160+28], %r20;
+	.loc	22	48	0
+	st.local.f32 	[__cuda___cuda_local_var_269122_12_non_const_prd_160+36], %f6;
+	.loc	22	49	0
+	st.local.f32 	[__cuda___cuda_local_var_269122_12_non_const_prd_160+32], %f13;
+	.loc	22	50	0
+	ld.global.u32 	%r21, [top_object+0];
+	.loc	2	208	0
+	ld.global.f32 	%f14, [scene_epsilon];
+	.loc	23	81	0
+	mov.u32 	%ra1, __cuda___cuda_local_var_269122_12_non_const_prd_160;
+	call.uni _ZN5optix16rt_undefined_useEi, (%ra1);
+	.loc	23	83	0
+	mov.u32 	%r22, %r21;
+	mov.f32 	%f15, %f1;
+	mov.f32 	%f16, %f2;
+	mov.f32 	%f17, %f3;
+	mov.f32 	%f18, %f10;
+	mov.f32 	%f19, %f11;
+	mov.f32 	%f20, %f12;
+	mov.u32 	%r23, 1;
+	mov.u32 	%r24, %r23;
+	mov.f32 	%f21, %f14;
+	mov.f32 	%f22, 0f6c4ecb8f;    	// 1e+027
+	mov.f32 	%f23, %f22;
+	mov.u32 	%r25, __cuda___cuda_local_var_269122_12_non_const_prd_160;
+	mov.u32 	%r26, %r25;
+	mov.u32 	%r27, 40;
+	mov.u32 	%r28, %r27;
+	call _rt_trace, (%r22, %f15, %f16, %f17, %f18, %f19, %f20, %r24, %f21, %f23, %r26, %r28);
+	.loc	22	63	0
+	exit;
+$LDWend__Z14photon_emitterv:
+	} // _Z14photon_emitterv
+
+	.func _ZN5optix16rt_undefined_useEi (.reg .u32 %ra1)
+	{
+	.loc	23	34	0
+$LDWbegin__ZN5optix16rt_undefined_useEi:
+	.loc	23	36	0
+	ret;
+$LDWend__ZN5optix16rt_undefined_useEi:
+	} // _ZN5optix16rt_undefined_useEi
+	.global .align 1 .b8 randomSeeds[1];
+	.global .align 1 .b8 photonResultBuffer[1];
+	.global .u32 _ZN21rti_internal_register20reg_bitness_detectorE;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail0E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail1E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail2E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail3E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail4E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail5E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail6E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail7E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail8E;
+	.global .u64 _ZN21rti_internal_register24reg_exception_64_detail9E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail0E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail1E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail2E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail3E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail4E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail5E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail6E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail7E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail8E;
+	.global .u32 _ZN21rti_internal_register21reg_exception_detail9E;
+	.global .u32 _ZN21rti_internal_register14reg_rayIndex_xE;
+	.global .u32 _ZN21rti_internal_register14reg_rayIndex_yE;
+	.global .u32 _ZN21rti_internal_register14reg_rayIndex_zE;
+	.global .align 4 .b8 _ZN21rti_internal_typeinfo13scene_epsilonE[8] = {82,97,121,0,4,0,0,0};
+	.global .align 4 .b8 _ZN21rti_internal_typeinfo10top_objectE[8] = {82,97,121,0,4,0,0,0};
+	.global .align 4 .b8 _ZN21rti_internal_typeinfo12launch_indexE[8] = {82,97,121,0,4,0,0,0};
+	.global .align 1 .b8 _ZN21rti_internal_typename13scene_epsilonE[6] = {0x66,0x6c,0x6f,0x61,0x74,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_typename10top_objectE[9] = {0x72,0x74,0x4f,0x62,0x6a,0x65,0x63,0x74,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_typename12launch_indexE[5] = {0x75,0x69,0x6e,0x74,0x0};
+	.global .align 1 .b8 _ZN21rti_internal_semantic13scene_epsilonE[1] = {0x0};
+	.global .align 1 .b8 _ZN21rti_internal_semantic10top_objectE[1] = {0x0};
+	.global .align 1 .b8 _ZN21rti_internal_semantic12launch_indexE[14] = {0x72,0x74,0x4c,0x61,0x75,0x6e,0x63,0x68,0x49,0x6e,0x64,0x65,0x78,0x0};
+	.global .align 1 .b8 _ZN23rti_internal_annotation13scene_epsilonE[1] = {0x0};
+	.global .align 1 .b8 _ZN23rti_internal_annotation10top_objectE[1] = {0x0};
+	.global .align 1 .b8 _ZN23rti_internal_annotation12launch_indexE[1] = {0x0};
+
